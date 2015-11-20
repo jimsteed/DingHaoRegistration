@@ -33,7 +33,8 @@ $info = array('status', 'photoPermission', 'numberParents', 'parent1_first',
               'parent1_last', 'parent2_first', 'parent2_last', 'phone', 
               'email', 'address1', 'address2', 'city', 'state', 'zip',
               'cell1', 'cell2', 'emergency', 'emergencyPhone',
-              'numberStudents', 'donation', 'donationCustomAmount');
+              'numberStudents', 'donation', 'donationCustomAmount',
+              'cost','earlyBird','payByCheck');
 $student_info = array('first', 'last', 'class', 'birthdate_month', 
               'birthdate_day', 'birthdate_year', 'new', 'registeredLast');
 
@@ -104,14 +105,6 @@ if (!empty($missing_fields)) {
              'Reply-To: '.$email_from."\r\n" .
              'X-Mailer: PHP/' . phpversion();
 
-  $info = array('status', 'photoPermission', 'numberParents', 'parent1_first',
-                'parent1_last', 'parent2_first', 'parent2_last', 'phone', 
-                'email', 'address1', 'address2', 'city', 'state', 'zip',
-                'cell1', 'cell2', 'emergency', 'emergencyPhone',
-                'numberStudents', 'donation', 'donationCustomAmount');
-  $student_info = array('first', 'last', 'class', 'birthdate_month', 
-                'birthdate_day', 'birthdate_year', 'new', 'registeredLast');
-
   $m = $_POST['parent1_first'] . " " . $_POST['parent1_last'] . " has registered " . $_POST['numberStudents'] . " student" . ($_POST['numberStudents'] == 1 ? "" : "s") . ".\n\n";
   for ($i=1; $i<= $_POST['numberStudents']; $i++) {
     $name_full  = "student" . $i . "_first";
@@ -132,7 +125,7 @@ if (!empty($missing_fields)) {
   } else {
     $m .= "The family was invoiced for \$".$_POST['cost'].".\n\n";
   }
-  if (isset($_POST['payByCheck'])) {
+  if (strcmp($_POST['payByCheck'],"on")==0) {
      $m .= "They will pay by check.\n\n";
   }
 
