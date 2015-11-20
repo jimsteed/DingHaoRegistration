@@ -6,7 +6,7 @@
 <body>
 <?php $values = parse_ini_file('setup'); ?>
 <?php include('header.html'); ?>
-<h1>Ding Hao Chinese School Registration Form<br>
+<h1>Registration Form<br>
 Classes for Children Ages 4-16, Preschool, and Adults</h1>
  
 <P>Dear Parents:</P>
@@ -26,20 +26,20 @@ Classes for Children Ages 4-16, Preschool, and Adults</h1>
 <P>Tuition is $<?php echo $values['tuition'] ?> (including the non-refundable $15 registration fee).  Families with more than two children attending class will receive an additional discount according to the table below.  Scholarships are available via the <a href="http://dinghao.ccagp.org/Fall2015SherKungMemorialScholarshipApplication.docx">Sher Shon Kung Memorial Scholarship</a>.  Please note, Ding Hao will make every effort to make up any time lost when schedule changes occur because of unforeseen events or inclement weather; however, the school will not offer refunds in the event of scheduling changes.</P>
 
 <center>
-<table border="0">
-<tr><th colspan="2">Tuition Cost</th></tr>
+<table style="width: 50%;">
+<tr><th>Number of Children</th><th>Tuition</th></tr>
 <tr><td>1 child</td><td>$<?php echo $values['tuition']; ?></td></tr>
-<tr><td>2 child</td><td>$<?php echo 2*$values['tuition']; ?></td></tr>
-<tr><td>3 child</td><td>$<?php echo (3-$values['discount_3rdkid'])*$values['tuition']; ?></td></tr>
-<tr><td>4 child</td><td>$<?php echo (4-2*$values['discount_3rdkid'])*$values['tuition']; ?></td></tr>
-<tr><td>5 child</td><td>$<?php echo (5-3*$values['discount_3rdkid'])*$values['tuition']; ?></td></tr>
+<tr><td>2 children</td><td>$<?php echo 2*$values['tuition']; ?></td></tr>
+<tr><td>3 children</td><td>$<?php echo (3-$values['discount_3rdkid'])*$values['tuition']; ?></td></tr>
+<tr><td>4 children</td><td>$<?php echo (4-2*$values['discount_3rdkid'])*$values['tuition']; ?></td></tr>
+<tr><td>5 children</td><td>$<?php echo (5-3*$values['discount_3rdkid'])*$values['tuition']; ?></td></tr>
 <tr><td>Preschool</td><td>$<?php echo $values['tuition_year1']; ?> (each)</td></tr>
 <tr><td>Adult</td><td>$<?php echo $values['tuition_adult']; ?> (each)</td></tr>
 </table>
 </center>
 
  
-<P><em>There are two additional charges, a $<?php echo $values['pto']?> PTO fee and the CCAGP fee.</em>  The CCAGP (Chinese Cultural Association of Greater Philadelphia) is the umbrella organization under which Ding Hao functions.  CCAGP charges an annual fee on a per-parent basis.  In other words, a family with one parent/guardian will be charged $15/year.  A family with two parents/guardians will be charged $30/year.  The number of children is not a factor, because the fee correlates to the number of "voting members" of CCAGP.</P>
+<P><em>There are two additional charges, a $<?php echo $values['pto']; ?> PTO fee and the CCAGP fee.</em>  The CCAGP (Chinese Cultural Association of Greater Philadelphia) is the umbrella organization under which Ding Hao functions.  CCAGP charges an annual fee on a per-parent basis.  In other words, a family with one parent/guardian will be charged $<?php echo $values['ccagp_oneparent']; ?>/year.  A family with two parents/guardians will be charged $<?php echo $values['ccagp_twoparent']; ?>/year.  The number of children is not a factor, because the fee correlates to the number of "voting members" of CCAGP.</P>
  
 <P>Tuition will be refunded on a prorated cost-per-class basis to those who withdraw after attending the first, second or third class.  Fifty percent will be refunded to those who remain through the fourth class.  After the fourth class, no fees will be refunded.</P>
  

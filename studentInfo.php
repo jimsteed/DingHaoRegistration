@@ -102,8 +102,8 @@ Number of students: <select name="numberStudents" onchange="display(this.value);
      } else {
         echo "<tr id=\"student" . $i . "tr\">\n";
      }
-     echo "<td><input name=\"student" . $i . "_first\" id=\"student" . $i . "_first\"></td>\n";
-     echo "<td><input name=\"student" . $i . "_last\" id=\"student" . $i . "_lasst\" value=\"" . $_POST['parent1_last'] . "\"></td>\n";
+     echo "<td><input class=\"name\" name=\"student" . $i . "_first\" id=\"student" . $i . "_first\"></td>\n";
+     echo "<td><input class=\"name\" name=\"student" . $i . "_last\" id=\"student" . $i . "_lasst\" value=\"" . $_POST['parent1_last'] . "\"></td>\n";
      echo "<td><select name=\"student" . $i . "_class\" id=\"student" . $i . "_class\">\n";
      print <<<END_CLASS
                 <option value="Preschool">Preschool (Class 1)</option>
@@ -119,10 +119,10 @@ END_CLASS;
 		<option value="Mar">Mar</option>
 		<option value="Apr">Apr</option>
 		<option value="May">May</option>
-		<option value="June">June</option>
-		<option value="July">July</option>
+		<option value="Jun">Jun</option>
+		<option value="Jul">Jul</option>
 		<option value="Aug">Aug</option>
-		<option value="Sept">Sept</option>
+		<option value="Sep">Sep</option>
 		<option value="Oct">Oct</option>
 		<option value="Nov">Nov</option>
 		<option value="Dec">Dec</option>

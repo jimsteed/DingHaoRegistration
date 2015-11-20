@@ -16,25 +16,37 @@ function display(id) {
       break;
   }
 }
+function validPhone(ph) {
+  for (var i=0, len=ph.length, num=0; i<len; i++) {
+    if (ph[i] >= '0' && ph[i] <= '9') num++;
+  }
+  if (num < 9) return false;
+  return true;
+}
+function validEmail(email) 
+{
+    var re = /\S+@\S+\.\S+/;
+    return re.test(email);
+}
 function check(form) {
   if ((document.getElementById('parent1_last').value.length == 0 || document.getElementById('parent1_first').value.length == 0) ||
       (form.numberParents.value == '2' && document.getElementById('parent2_first').value.length == 0) 
      ) {
     alert ('Please enter parent name(s).');
     return false;
-  } else if (document.getElementById('phone').value.length == 0 &&
-        document.getElementById('cell1').value.length == 0 &&
-        document.getElementById('cell2').value.length == 0
-       ) {
+  } else if (!validPhone(document.getElementById('phone').value) &&
+             !validPhone(document.getElementById('cell1').value) &&
+             !validPhone(document.getElementById('cell2').value)
+            ) {
     alert ('Please enter at least one parent phone number.');
     return false;
-  } else if (document.getElementById('email').value.length == 0
-       ) {
+  } else if (!validEmail(document.getElementById('email').value)
+            ) {
     alert ('Please enter email.');
     return false;
   } else if (document.getElementById('emergency').value.length == 0 ||
-        document.getElementById('emergencyPhone').value.length == 0
-       ) {
+             !validPhone(document.getElementById('emergencyPhone').value)
+            ) {
     alert ('Please enter emergency contact info.');
     return false;
   } else if (document.getElementById('address1').value.length == 0 ||
@@ -47,13 +59,52 @@ function check(form) {
     return true;
   }
 }
+function setCaretPosition(ctrl, pos)
+{
+    if(ctrl.setSelectionRange)
+    {
+        ctrl.focus();
+        ctrl.setSelectionRange(pos,pos);
+    }
+    else if (ctrl.createTextRange) {
+        var range = ctrl.createTextRange();
+        range.collapse(true);
+        range.moveEnd('character', pos);
+        range.moveStart('character', pos);
+        range.select();
+    }
+}
+function limitPhone(text) {
+  var numbers = [];
+  var i=0;
+  var endpos;
+  for (var len = text.value.length; i<len; i++) {
+    if (text.value[i] >= '0' && text.value[i] <= '9') {
+      numbers.push(text.value[i].toString());
+    }
+  }
+  endpos = numbers.length;
+  endpos = endpos < 4 ? endpos+1 : endpos < 7 ? endpos+3 : endpos+4;
+  for (i=numbers.length; i<10; i++) {
+    numbers.push(" ");
+  }
+  if (numbers.length == 10) {
+    text.value = "(" + numbers[0] + numbers[1] + numbers[2] + ") " +
+                       numbers[3] + numbers[4] + numbers[5] + "-" +
+                       numbers[6] + numbers[7] + numbers[8] + numbers[9];
+  } else {
+    text.value = numbers.join('');
+  }
+  setCaretPosition(text,endpos);
+  return true;
+}
 -->
 </script>
 </head>
 <body>
 <?php $values = parse_ini_file('setup'); ?>
 <?php include('header.html'); ?>
-<h1>Parent/Adult Information (Step 2 of 5)</h1>
+<h1>Parent/Guardian Information (Step 2 of 5)</h1>
 
 <form action="studentInfo.php" method="post" onsubmit="return check(this);">
 <P>
@@ -74,15 +125,15 @@ function check(form) {
 </tr>
 <tr>
 <th>Parent/Guardian 1</th>
-<td>First <input type="text" name="parent1_first" id="parent1_first"> Last <input type="text" name="parent1_last" id="parent1_last"></td>
+<td>First <input class="name" type="text" name="parent1_first" id="parent1_first"> Last <input class="name" type="text" name="parent1_last" id="parent1_last"></td>
 </tr>
 <tr id="parent2tr">
 <th>Parent/Guardian 2</th>
-<td>First <input type="text" name="parent2_first" id="parent2_first"> Last <input type="text" name="parent2_last" id="parent2_last"></td>
+<td>First <input class="name" type="text" name="parent2_first" id="parent2_first"> Last <input class="name" type="text" name="parent2_last" id="parent2_last"></td>
 </tr>
 <tr>
 <th>Home Phone</th>
-<td><input type="text" name="phone" id="phone"></td>
+<td><input type="text" name="phone" id="phone" onInput="limitPhone(this);"></td>
 </tr>
 <tr>
 <th>Email</th>
@@ -169,11 +220,11 @@ function check(form) {
 </tr>
 <tr>
 <th>Cell Phone of Parent/Guardian 1</th>
-<td><input type="text" name="cell1" id="cell1"></td>
+<td><input type="text" name="cell1" id="cell1" onInput="limitPhone(this);"></td>
 </tr>
 <tr id="cell2tr">
 <th>Cell Phone of Parent/Guardian 2</th>
-<td><input type="text" name="cell2" id="cell2"></td>
+<td><input type="text" name="cell2" id="cell2" onInput="limitPhone(this);"></td>
 </tr>
 <tr>
 <th>Emergency Contact (Not Parent/Guardian)</th>
@@ -181,7 +232,7 @@ function check(form) {
 </tr>
 <tr>
 <th>Emergency Contact Phone</th>
-<td><input type="text" name="emergencyPhone" id="emergencyPhone"></td>
+<td><input type="text" name="emergencyPhone" id="emergencyPhone" onInput="limitPhone(this);"></td>
 </tr>
 </table>
 

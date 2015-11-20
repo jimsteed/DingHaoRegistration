@@ -48,11 +48,11 @@ function check(form) {
   }
 ?>
 
-<input type="radio" name="donation" value="25" checked="checked">$25<br>
-<input type="radio" name="donation" value="50">$50<br>
-<input type="radio" name="donation" value="100">$100<br>
-<input type="radio" name="donation" value="other">Other amount: $<input type="text" name="donationCustomAmount" size="5"><br>
-<input type="radio" name="donation" value="0">No, thank you but I will consider donating as part of my workplace's charitable giving program.
+<input type="radio" name="donation" value="25" checked="checked"> $25<br>
+<input type="radio" name="donation" value="50"> $50<br>
+<input type="radio" name="donation" value="100"> $100<br>
+<input type="radio" name="donation" value="other"> Other amount: $<input type="text" name="donationCustomAmount" size="5"><br>
+<input type="radio" name="donation" value="0"> No, thank you but I will consider donating as part of my workplace's charitable giving program.
 
 <P class="button">
 <input id="continue" type="submit" value="Continue Registration">

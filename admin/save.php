@@ -1,8 +1,7 @@
 <?php
-function safefilerewrite($fileName, $dataToSave)
+function safefilerewrite($filename, $dataToSave)
 {
-    $fp = fopen($filename,"r"); //$fp = fopen($filename,"r"); //$filename,"w") or die(print_r(error_get_last(),true));
-/*
+    $fp = fopen($filename,"w") or die(print_r(error_get_last(),true));
     if ($fp)
     {
         do
@@ -18,7 +17,6 @@ function safefilerewrite($fileName, $dataToSave)
         }
         fclose($fp);
     }
-*/
 }
 
 function write_php_ini($array, $file)
@@ -26,7 +24,7 @@ function write_php_ini($array, $file)
     $res = "";
     foreach($array as $key => $val)
     {
-        $res .= "$key = ".(is_numeric($val) ? $val : "\"".$val."\"\n");
+        $res .= "$key = ".(is_numeric($val) ? $val : "\"".$val."\"") . "\n";
     }
     echo $res;
     safefilerewrite($file,$res);

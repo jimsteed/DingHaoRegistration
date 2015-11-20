@@ -1,0 +1,11 @@
+semester = "Spring"
+year = 2016
+tuition = 320
+tuition_year1 = 160
+tuition_adult = 160
+deadline = "01/01/2016"
+discount_early = 15
+discount_3rdkid = 0.425
+ccagp_oneparent = 15
+ccagp_twoparent = 30
+pto = 20

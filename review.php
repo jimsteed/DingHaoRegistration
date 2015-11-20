@@ -127,6 +127,9 @@ REVIEW;
       echo "<input type=\"hidden\" name=\"earlyBird\" value=\"no\">\n";
     }
     echo <<<BUTTON
+<P>
+<input type="checkbox" name="payByCheck"> I intend to pay by check. (Note: A Paypal checkout button will still be generated for you in case you change your mind.) 
+</P>
 <P class="button">
 <input id="continue" type="submit" value="Submit Completed Registration">
 </P>
